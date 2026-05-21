@@ -1,0 +1,85 @@
+{
+  "inbounds": [
+    {
+      "type": "hysteria2",
+      "tag": "hy2-in",
+      "listen": "::",
+      "listen_port": 443,
+      "users": [
+        {
+          "name": "user1",
+          "password": "在这里填入你自己设定的高强度密码"
+        }
+      ],
+      "masquerade": {
+        "type": "proxy",
+        "proxy": {
+          "url": "https://www.google.com",
+          "rewrite_host": true
+        }
+      },
+      "ignore_client_bandwidth": false
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "domain_suffix": [
+          ".local",
+          ".lan"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "domain": [
+          "ntp.org",
+          "time.apple.com"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "outbound": "dns-out",
+        "protocol": "dns"
+      }
+    ]
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          "cn"
+        ],
+        "server": "dns-local"
+      },
+      {
+        "domain_suffix": [
+          "local",
+          "lan"
+        ],
+        "server": "dns-local"
+      }
+    ]
+  }
+}

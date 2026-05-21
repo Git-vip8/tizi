@@ -1,0 +1,35 @@
+{
+  "inbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "::",
+      "listen_port": 8443,
+      "users": [
+        {
+          "name": "user1",
+          "uuid": "在这里填入你自己用 sing-box generate uuid 生成的 UUID"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": "www.apple.com",
+            "server_port": 443
+          },
+          "private_key": "在这里填入你自己用 sing-box generate reality-keypair 生成的 Private key",
+          "short_id": ["在这里填入你自己用 sing-box generate rand 8 --hex 生成的短ID"]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ]
+}
