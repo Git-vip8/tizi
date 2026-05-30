@@ -23,10 +23,6 @@
     {
       "type": "direct",
       "tag": "direct"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
     }
   ],
   "route": {
@@ -34,7 +30,8 @@
       {
         "domain_suffix": [
           ".local",
-          ".lan"
+          ".lan",
+          "cn"
         ],
         "outbound": "direct"
       },
@@ -44,40 +41,32 @@
           "time.apple.com"
         ],
         "outbound": "direct"
-      },
-      {
-        "outbound": "dns-out",
-        "protocol": "dns"
-      }
-    ]
-  },
-  "dns": {
-    "servers": [
-      {
-        "tag": "dns-remote",
-        "address": "https://1.1.1.1/dns-query",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-local",
-        "address": "https://223.5.5.5/dns-query",
-        "detour": "direct"
       }
     ],
-    "rules": [
-      {
-        "domain_suffix": [
-          "cn"
-        ],
-        "server": "dns-local"
-      },
-      {
-        "domain_suffix": [
-          "local",
-          "lan"
-        ],
-        "server": "dns-local"
-      }
-    ]
+    "dns": {
+      "servers": [
+        {
+          "tag": "dns-remote",
+          "address": "https://1.1.1.1/dns-query",
+          "strategy": "ipv4_only"
+        },
+        {
+          "tag": "dns-local",
+          "address": "https://223.5.5.5/dns-query",
+          "strategy": "ipv4_only",
+          "match": "all"
+        }
+      ],
+      "rules": [
+        {
+          "domain_suffix": [
+            "cn",
+            "local",
+            "lan"
+          ],
+          "server": "dns-local"
+        }
+      ]
+    }
   }
 }
