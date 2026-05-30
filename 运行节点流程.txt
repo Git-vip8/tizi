@@ -42,3 +42,30 @@ cd ~/tizi && bash bushu.sh
 ```
 
 如果想让服务器重启后节点自动启动，我可以帮你写一个 systemd 服务文件，一劳永逸。需要吗？
+
+
+注意：
+hy2的节点，是udp协议，不是tcp。
+服务器防火墙不开放某个端口的udp协议，是连接不到hy2节点的。
+另外，即便是端口开放了udp协议，不同端口也有不同的效果。
+像腾讯云的443端口，即便开放了udp协议，随时能连接上节点，但是速度非常慢。因为有些端口的速度可能有限制。
+这时候，换其它固定端口或者动态端口，就大概率会不被限制速度。
+
+
+服务器重新拉取仓库里的hy2文件。
+cd ~/tizi && git pull && cp hy2.json /etc/sing-box/hy2.json
+
+查看hy2文件的端口是什么？
+grep listen_port /etc/sing-box/hy2.json
+
+
+端口已经正确更新，现在重启 Hy2 让配置生效，然后测试连接。
+
+pkill sing-box
+export ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true
+export ENABLE_DEPRECATED_MISSING_DOMAIN_RESOLVER=true
+sing-box run -c /etc/sing-box/vless-reality.json &
+sing-box run -c /etc/sing-box/hy2.json &
+ps aux | grep sing-box
+
+
