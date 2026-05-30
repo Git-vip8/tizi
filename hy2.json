@@ -13,8 +13,8 @@
       ],
       "tls": {
         "enabled": true,
-        "certificate": "fake",
-        "key": "fake"
+        "certificate_path": "/etc/sing-box/certs/cert.pem",
+        "key_path": "/etc/sing-box/certs/private.key"
       },
       "masquerade": {
         "type": "proxy",
