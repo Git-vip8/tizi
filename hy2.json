@@ -11,6 +11,11 @@
           "password": "Tz123456"
         }
       ],
+      "tls": {
+        "enabled": true,
+        "certificate": "fake",
+        "key": "fake"
+      },
       "masquerade": {
         "type": "proxy",
         "url": "https://www.google.com",
@@ -30,8 +35,7 @@
       {
         "domain_suffix": [
           ".local",
-          ".lan",
-          "cn"
+          ".lan"
         ],
         "outbound": "direct"
       },
@@ -60,9 +64,7 @@
     "rules": [
       {
         "domain_suffix": [
-          "cn",
-          "local",
-          "lan"
+          "cn"
         ],
         "server": "dns-local"
       }
