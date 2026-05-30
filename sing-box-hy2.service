@@ -1,0 +1,12 @@
+[Unit]
+Description=sing-box Hy2
+After=network.target
+[Service]
+Type=simple
+Environment=ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true
+Environment=ENABLE_DEPRECATED_MISSING_DOMAIN_RESOLVER=true
+ExecStart=/usr/local/bin/sing-box run -c /etc/sing-box/hy2.json
+Restart=on-failure
+RestartSec=5s
+[Install]
+WantedBy=multi-user.target

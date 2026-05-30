@@ -15,8 +15,11 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 cp ./hy2.json /etc/sing-box/hy2.json
 cp ./vless-reality.json /etc/sing-box/vless-reality.json
 
-# 3. 用指定的配置文件启动 sing-box，后台运行
-sing-box run -c /etc/sing-box/hy2.json &
-sing-box run -c /etc/sing-box/vless-reality.json &
+# 3. 安装 systemd 服务文件并启动
+cp ./sing-box-hy2.service /etc/systemd/system/
+cp ./sing-box-vless.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable sing-box-hy2 sing-box-vless
+systemctl restart sing-box-hy2 sing-box-vless
 
-echo "部署完成！Hy2 和 VLESS 节点已启动。"
+echo "部署完成！Hy2 和 VLESS 节点已启动，并已设置开机自启。"

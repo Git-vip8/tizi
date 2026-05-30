@@ -1,0 +1,10 @@
+[Unit]
+Description=sing-box VLESS
+After=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/sing-box run -c /etc/sing-box/vless-reality.json
+Restart=on-failure
+RestartSec=5s
+[Install]
+WantedBy=multi-user.target
