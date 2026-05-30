@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 0. 设置环境变量
+export ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true
+export ENABLE_DEPRECATED_MISSING_DOMAIN_RESOLVER=true
+
 # 1. 创建证书目录并生成自签名证书
 mkdir -p /etc/sing-box/certs
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
