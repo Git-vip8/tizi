@@ -4,7 +4,7 @@
       "type": "hysteria2",
       "tag": "hy2-in",
       "listen": "::",
-      "listen_port": 443,
+      "listen_port": "20000-50000",
       "users": [
         {
           "name": "user1",
@@ -21,6 +21,7 @@
         "url": "https://www.google.com",
         "rewrite_host": true
       },
+      "speed": true,
       "ignore_client_bandwidth": false
     }
   ],
