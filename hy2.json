@@ -13,10 +13,8 @@
       ],
       "masquerade": {
         "type": "proxy",
-        "proxy": {
-          "url": "https://www.google.com",
-          "rewrite_host": true
-        }
+        "url": "https://www.google.com",
+        "rewrite_host": true
       },
       "ignore_client_bandwidth": false
     }
