@@ -42,31 +42,30 @@
         ],
         "outbound": "direct"
       }
+    ]
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "https://1.1.1.1/dns-query",
+        "strategy": "ipv4_only"
+      },
+      {
+        "tag": "dns-local",
+        "address": "https://223.5.5.5/dns-query",
+        "strategy": "ipv4_only"
+      }
     ],
-    "dns": {
-      "servers": [
-        {
-          "tag": "dns-remote",
-          "address": "https://1.1.1.1/dns-query",
-          "strategy": "ipv4_only"
-        },
-        {
-          "tag": "dns-local",
-          "address": "https://223.5.5.5/dns-query",
-          "strategy": "ipv4_only",
-          "match": "all"
-        }
-      ],
-      "rules": [
-        {
-          "domain_suffix": [
-            "cn",
-            "local",
-            "lan"
-          ],
-          "server": "dns-local"
-        }
-      ]
-    }
+    "rules": [
+      {
+        "domain_suffix": [
+          "cn",
+          "local",
+          "lan"
+        ],
+        "server": "dns-local"
+      }
+    ]
   }
 }
