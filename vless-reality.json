@@ -1,0 +1,35 @@
+{
+  "inbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "::",
+      "listen_port": 8443,
+      "users": [
+        {
+          "name": "user1",
+          "uuid": "06f1805c-d31a-42a2-a0e6-a4ad476cd89f"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": "www.apple.com",
+            "server_port": 443
+          },
+          "private_key": "mCR6f47Mv6opJmcdp90eoE2r_7Wy7ICfYsu3ibwxhWk",
+          "short_id": ["717f6e79b0fb00cc"]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ]
+}
